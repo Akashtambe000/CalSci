@@ -1,3 +1,3 @@
 # CalSci
 
-This is a scientific calculator for students.
+This is a scientific calculator for enineering students.
