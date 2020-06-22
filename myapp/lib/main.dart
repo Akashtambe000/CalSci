@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -44,11 +45,27 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int power = 0;
+  ScreenData screen;
 
   void _incrementCounter() {
     setState(() {
       _counter++;
       power = pow(2,_counter);
+      screen.add("$_counter");
+    });
+  }
+  void _decrementCounter() {
+    setState(() {
+      _counter--;
+      power = pow(2,_counter);
+      screen.remove();
+    });
+  }
+  void _clearCounter() {
+    setState(() {
+      _counter = 0;
+      power = 0;
+      screen.clear();
     });
   }
 
@@ -65,14 +82,21 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.015,
             ),
-            Screen(buffer:'$_counter'),
+            Screen(data:screen),
+            RaisedButton(
+              onPressed: _incrementCounter,
+              child: Icon(Icons.add),
+            ), 
+            RaisedButton(
+              onPressed: _decrementCounter,
+              child: Icon(Icons.remove),
+            ),
+            RaisedButton(
+              onPressed: _clearCounter,
+              child: Text("C"),
+            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ), 
     );
   }
