@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.015,
             ),
-            Screen(buffer:'$_counter'),
+            Screen(buffer:'$power'),
           ],
         ),
       ),
