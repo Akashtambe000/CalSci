@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import './buttons.dart';
-import './Screen.dart';
+import './Widgets/buttons.dart';
+import './Widgets/Screen.dart';
+import './Methods/ScreenData.dart';
 
-part 'MyColors.dart';
+part './Widgets/MyColors.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,6 +35,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  ScreenData data = ScreenData();
+
+  void addToBuffer(String keyValue) {
+    setState(() {
+      data.add(keyValue);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // appbar widget
@@ -69,11 +79,11 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 padding: EdgeInsets.only(right: 20),
                 height: appHeight * 0.40,
-                child: Screen(),
+                child: Screen(data: data),
               ),
               Container(
-                height: appHeight * 0.55 - mainPadding,
-                child: Buttons(),
+                height: appHeight * 0.55-mainPadding,
+                child: Buttons(addToBuffer: addToBuffer),
               ),
             ],
           ),

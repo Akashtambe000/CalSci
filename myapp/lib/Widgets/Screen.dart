@@ -1,31 +1,9 @@
 import 'package:flutter/material.dart';
-
-class ScreenData {
-  String buffer;
-
-  ScreenData({this.buffer});
-
-  void add(String value) {
-    buffer += value;
-  }
-
-  void remove({int n = 1}) {
-    buffer = buffer.substring(0, buffer.length - n);
-  }
-
-  void clear() {
-    buffer = "";
-  }
-
-  @override
-  String toString() {
-    return buffer.toString();
-  }
-}
+import '../Methods/ScreenData.dart';
 
 class Screen extends StatefulWidget {
   final ScreenData data;
-  Screen({Key key, this.data}) : super(key: key);
+  Screen({Key key, @required this.data}) : super(key: key);
   @override
   State<StatefulWidget> createState() => ScreenState();
 }
@@ -40,13 +18,21 @@ class ScreenState extends State<Screen> {
           Container(
             height: constraints.maxHeight * 0.25,
             //color: Colors.blue,
-            child: Text(""),
+            child: Text("${widget.data.getbuffer}",
+                textScaleFactor: 1.5,
+                style: TextStyle(
+                  color: Colors.white,
+                )),
             alignment: Alignment.bottomRight,
           ),
           Container(
             height: constraints.maxHeight * 0.25,
             //color: Colors.deepOrangeAccent,
-            child: Text(""),
+            child: Text("${widget.data.getbuffer}",
+                textScaleFactor: 2,
+                style: TextStyle(
+                  color: Colors.white,
+                )),
             alignment: Alignment.bottomRight,
           ),
         ],

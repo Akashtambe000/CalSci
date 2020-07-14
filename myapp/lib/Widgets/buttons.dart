@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import './buttonWidget.dart';
+import 'buttonWidget.dart';
 
 class Buttons extends StatelessWidget {
+  Buttons({@required this.addToBuffer});
+
+  final Function addToBuffer;
   final buttonlist = [
     [
       {"keyValue": "AC", "bgColor": Colors.teal},
@@ -43,16 +46,17 @@ class Buttons extends StatelessWidget {
             children: buttonlist.map((row) {
           return Row(
               children: row.map((singleButton) {
-                return Container(
-                  width: constraints.maxWidth * 0.25,
-                  height: constraints.maxHeight * 0.20,
-                  padding: EdgeInsets.symmetric(vertical: 3),
-                  child: ButtonWidget(
-                    bgColor: singleButton["bgColor"],
-                    keyValue: singleButton["keyValue"],
-                  ),
-                );
-              }).toList());
+            return Container(
+              width: constraints.maxWidth * 0.25,
+              height: constraints.maxHeight * 0.20,
+              padding: EdgeInsets.symmetric(vertical: 3),
+              child: ButtonWidget(
+                bgColor: singleButton["bgColor"],
+                keyValue: singleButton["keyValue"],
+                addToBuffer: addToBuffer,
+              ),
+            );
+          }).toList());
         }).toList()),
       );
     });

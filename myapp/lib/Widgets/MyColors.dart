@@ -1,4 +1,4 @@
-part of 'main.dart';
+part of '../main.dart';
 
 class MyColors {
   MyColors._(); // this basically makes it so you can instantiate this class
