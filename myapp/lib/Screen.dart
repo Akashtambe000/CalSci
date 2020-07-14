@@ -39,13 +39,13 @@ class ScreenState extends State<Screen> {
           SizedBox(height: constraints.maxHeight * 0.3),
           Container(
             height: constraints.maxHeight * 0.25,
-            color: Colors.blue,
+            //color: Colors.blue,
             child: Text(""),
             alignment: Alignment.bottomRight,
           ),
           Container(
             height: constraints.maxHeight * 0.25,
-            color: Colors.deepOrangeAccent,
+            //color: Colors.deepOrangeAccent,
             child: Text(""),
             alignment: Alignment.bottomRight,
           ),

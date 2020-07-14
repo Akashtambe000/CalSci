@@ -63,15 +63,16 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Container(
           padding: EdgeInsets.all(mainPadding),
           height: appHeight,
+          color: Colors.black,
           child: Column(
             children: <Widget>[
               Container(
                 padding: EdgeInsets.only(right: 20),
-                height: appHeight * 0.45,
+                height: appHeight * 0.40,
                 child: Screen(),
               ),
               Container(
-                height: appHeight * 0.50 - mainPadding,
+                height: appHeight * 0.55 - mainPadding,
                 child: Buttons(),
               ),
             ],

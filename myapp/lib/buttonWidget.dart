@@ -13,7 +13,8 @@ class ButtonWidget extends StatelessWidget {
         onPressed: ()=>{},
         shape: CircleBorder(),
         color: bgColor,
-        child: Text(keyValue,textScaleFactor: 1.5,)
+        elevation: 0,
+        child: Text(keyValue,textScaleFactor: 2,style: TextStyle(color: Colors.white),)
       );
     });
   }
