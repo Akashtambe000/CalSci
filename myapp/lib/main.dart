@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
-import 'dart:math';
+import './Widgets/buttons.dart';
+import './Widgets/Screen.dart';
+import './Methods/ScreenData.dart';
 
-part 'MyColors.dart';
-part 'Screen.dart';
+part './Widgets/MyColors.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,25 +16,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'CalSci',
       theme: ThemeData(
-        primarySwatch: MyColors.primary,
+        primarySwatch: Colors.amber,
+        accentColor: Colors.teal[600],
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'fx-991ES+'),
+      home: MyHomePage(title: 'CalSci'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -43,61 +35,58 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  int power = 0;
-  ScreenData screen;
 
-  void _incrementCounter() {
+  ScreenData data = ScreenData();
+
+  void addToBuffer(String keyValue) {
     setState(() {
-      _counter++;
-      power = pow(2,_counter);
-      screen.add("$_counter");
-    });
-  }
-  void _decrementCounter() {
-    setState(() {
-      _counter--;
-      power = pow(2,_counter);
-      screen.remove();
-    });
-  }
-  void _clearCounter() {
-    setState(() {
-      _counter = 0;
-      power = 0;
-      screen.clear();
+      data.add(keyValue);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.015,
-            ),
-            Screen(data:screen),
-            RaisedButton(
-              onPressed: _incrementCounter,
-              child: Icon(Icons.add),
-            ), 
-            RaisedButton(
-              onPressed: _decrementCounter,
-              child: Icon(Icons.remove),
-            ),
-            RaisedButton(
-              onPressed: _clearCounter,
-              child: Text("C"),
-            ),
-          ],
+    // appbar widget
+    final appBar = AppBar(
+      title: Text(
+        widget.title,
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
         ),
-      ), 
+      ),
+      backgroundColor: Theme.of(context).accentColor,
     );
+
+    // mediaquery widget
+    final mediaQuery = MediaQuery.of(context);
+
+    // appheight
+    final appHeight = (mediaQuery.size.height -
+        appBar.preferredSize.height -
+        mediaQuery.padding.top);
+
+    final double mainPadding = 10;
+
+    return Scaffold(
+        appBar: appBar,
+        body: Container(
+          padding: EdgeInsets.all(mainPadding),
+          height: appHeight,
+          color: Colors.black,
+          child: Column(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(right: 20),
+                height: appHeight * 0.40,
+                child: Screen(data: data),
+              ),
+              Container(
+                height: appHeight * 0.55-mainPadding,
+                child: Buttons(addToBuffer: addToBuffer),
+              ),
+            ],
+          ),
+        ));
   }
 }
