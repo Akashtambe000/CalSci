@@ -17,7 +17,6 @@ class ScreenState extends State<Screen> {
           SizedBox(height: constraints.maxHeight * 0.3),
           Container(
             height: constraints.maxHeight * 0.25,
-            //color: Colors.blue,
             child: Text("${widget.data.getbuffer}",
                 textScaleFactor: 1.5,
                 style: TextStyle(
@@ -27,7 +26,6 @@ class ScreenState extends State<Screen> {
           ),
           Container(
             height: constraints.maxHeight * 0.25,
-            //color: Colors.deepOrangeAccent,
             child: Text("${widget.data.getbuffer}",
                 textScaleFactor: 2,
                 style: TextStyle(
