@@ -16,8 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'CalSci',
       theme: ThemeData(
-        primarySwatch: Colors.amber,
-        accentColor: Colors.teal[600],
+        primarySwatch: Colors.grey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'CalSci'),
@@ -54,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      backgroundColor: Theme.of(context).accentColor,
+      backgroundColor: Theme.of(context).primaryColor,
     );
 
     // mediaquery widget
@@ -80,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: appHeight * 0.40,
                 child: Screen(data: data,),
               ),
+              Divider(color: Colors.white),
               Container(
                 height: appHeight * 0.55 - mainPadding,
                 child: Buttons(bufferUpdated: refreshScreen),
