@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import './buttonWidget.dart';
 import '../Methods/ScreenData.dart';
+import '../Methods/Node.dart';
+import '../Methods/InfixToPostfix.dart';
 
 class Buttons extends StatelessWidget {
   Buttons({@required this.bufferUpdated});
@@ -19,36 +21,49 @@ class Buttons extends StatelessWidget {
     buffer.remove();
   }
 
+  static void displayResult(ButtonWidget b) {
+    Tokenizer tk = Tokenizer(buffer.getbuffer);
+    List<Node> infixNodeList = tk.getInfixNodeList();
+    IToP itop = IToP(infixNodeList);
+    List<Node> postfixNodeList = itop.convert();
+    for (int i = 0; i < postfixNodeList.length; i++) {
+      print(postfixNodeList[i].value);
+    }
+    // call infixTopostFix
+    // call postfixEvaluation
+    // store the result in buffer
+  }
+
   final buttonlist = [
     [
-      {"keyValue": "AC", "bgColor": Colors.teal, "func": clearBuffer},
-      {"keyValue": "<", "bgColor": Colors.teal, "func": backspace},
-      {"keyValue": "%", "bgColor": Colors.amber, "func": addToBuffer},
-      {"keyValue": "÷", "bgColor": Colors.amber, "func": addToBuffer},
+      {"keyValue": "<", "bgColor": Colors.grey, "func": backspace},
+      {"keyValue": "(", "bgColor": Colors.grey, "func": addToBuffer},
+      {"keyValue": ")", "bgColor": Colors.grey, "func": addToBuffer},
+      {"keyValue": "÷", "bgColor": Colors.orange, "func": addToBuffer},
     ],
     [
       {"keyValue": "7", "bgColor": Colors.white10, "func": addToBuffer},
       {"keyValue": "8", "bgColor": Colors.white10, "func": addToBuffer},
       {"keyValue": "9", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": "×", "bgColor": Colors.amber, "func": addToBuffer},
+      {"keyValue": "×", "bgColor": Colors.orange, "func": addToBuffer},
     ],
     [
       {"keyValue": "4", "bgColor": Colors.white10, "func": addToBuffer},
       {"keyValue": "5", "bgColor": Colors.white10, "func": addToBuffer},
       {"keyValue": "6", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": "-", "bgColor": Colors.amber, "func": addToBuffer},
+      {"keyValue": "-", "bgColor": Colors.orange, "func": addToBuffer},
     ],
     [
       {"keyValue": "1", "bgColor": Colors.white10, "func": addToBuffer},
       {"keyValue": "2", "bgColor": Colors.white10, "func": addToBuffer},
       {"keyValue": "3", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": "+", "bgColor": Colors.amber, "func": addToBuffer},
+      {"keyValue": "+", "bgColor": Colors.orange, "func": addToBuffer},
     ],
     [
-      {"keyValue": "±", "bgColor": Colors.amber, "func": addToBuffer},
+      {"keyValue": "AC", "bgColor": Colors.grey, "func": clearBuffer},
       {"keyValue": "0", "bgColor": Colors.white10, "func": addToBuffer},
       {"keyValue": ".", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": "=", "bgColor": Colors.teal, "func": addToBuffer},
+      {"keyValue": "=", "bgColor": Colors.grey, "func": displayResult},
     ],
   ];
 
