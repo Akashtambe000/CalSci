@@ -1,6 +1,11 @@
-class ScreenData {
-  String buffer = "";
+ScreenData buffer = new ScreenData();
 
+class ScreenData {
+  ScreenData() {
+    buffer = "";
+  }
+
+  String buffer;
   void add(String value) {
     buffer += value;
   }

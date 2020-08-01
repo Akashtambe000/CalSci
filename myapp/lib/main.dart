@@ -35,12 +35,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   ScreenData data = ScreenData();
 
-  void addToBuffer(String keyValue) {
+  void refreshScreen() {
     setState(() {
-      data.add(keyValue);
+      data = buffer;
     });
   }
 
@@ -79,11 +78,11 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 padding: EdgeInsets.only(right: 20),
                 height: appHeight * 0.40,
-                child: Screen(data: data),
+                child: Screen(data: data,),
               ),
               Container(
-                height: appHeight * 0.55-mainPadding,
-                child: Buttons(addToBuffer: addToBuffer),
+                height: appHeight * 0.55 - mainPadding,
+                child: Buttons(bufferUpdated: refreshScreen),
               ),
             ],
           ),
