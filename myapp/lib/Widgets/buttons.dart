@@ -11,10 +11,12 @@ class Buttons extends StatelessWidget {
 
   static void addToBuffer(ButtonWidget b) {
     buffer.add(b.keyValue);
+    calculate(b);
   }
 
   static void clearBuffer(ButtonWidget b) {
     buffer.clear();
+    results.clear();
   }
 
   static void backspace(ButtonWidget b) {
@@ -22,16 +24,17 @@ class Buttons extends StatelessWidget {
   }
 
   static void displayResult(ButtonWidget b) {
+    calculate(b);
+    buffer.clear();
+  }
+
+  static void calculate(ButtonWidget b) {
+    print("working");
     Tokenizer tk = Tokenizer(buffer.getbuffer);
     List<Node> infixNodeList = tk.getInfixNodeList();
     IToP itop = IToP(infixNodeList);
-    List<Node> postfixNodeList = itop.convert();
-    for (int i = 0; i < postfixNodeList.length; i++) {
-      print(postfixNodeList[i].value);
-    }
-    // call infixTopostFix
-    // call postfixEvaluation
-    // store the result in buffer
+    itop.convert();
+    results.buffer = evaluatePostfix(itop.getPostfix);
   }
 
   final buttonlist = [

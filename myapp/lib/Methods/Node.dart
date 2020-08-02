@@ -15,12 +15,6 @@ class Tokenizer {
   Tokenizer(this.ip) {
     ptr = 0;
   }
-  // bool isNumeric(String s) {
-  //   if (s == null) {
-  //     return false;
-  //   }
-  //   return double.tryParse(s) != null;
-  // }
 
   Node getToken() {
     Node n = new Node();

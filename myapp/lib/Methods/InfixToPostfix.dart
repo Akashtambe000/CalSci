@@ -42,7 +42,7 @@ class IToP {
     }
   }
 
-  List<Node> convert() {
+  void convert() {
     for (int i = 0; i < infixNodeList.length; i++) {
       var currentNode = infixNodeList[i];
 
@@ -69,7 +69,54 @@ class IToP {
     while (stack.isNotEmpty) {
       postfixNodeList.add(stack.pop());
     }
+  }
 
+  List<Node> get getPostfix {
     return postfixNodeList;
+  }
+}
+
+String evaluatePostfix(List<Node> list) {
+  double res = 0;
+  Stack<Node> stack = Stack();
+  int ptr = 0;
+  try {
+    while (ptr < list.length) {
+      var currentNode = list[ptr];
+      if (currentNode.type == Type.Number)
+        stack.push(currentNode);
+      else if (currentNode.type == Type.Operator) {
+        var op2 = double.parse(stack.pop().value);
+        var op1 = double.parse(stack.pop().value);
+        switch (currentNode.value) {
+          case '+':
+            res = op1 + op2;
+            break;
+          case '-':
+            res = op1 - op2;
+            break;
+          case '×':
+            res = op1 * op2;
+            break;
+          case '÷':
+            res = op1 / op2;
+            break;
+          default:
+            res = 0;
+        }
+        Node resNode = new Node(value: res.toString(), type: Type.Number);
+        stack.push(resNode);
+      }
+      ptr++;
+    }
+    var finalAns = double.parse(stack.pop().value);
+    if (stack.isEmpty) if (finalAns.truncate() == finalAns)
+      return finalAns.truncate().toString();
+    else
+      return finalAns.toString();
+    else
+      return "NA";
+  } catch (e) {
+    return "NA";
   }
 }
