@@ -19,7 +19,7 @@ class Tokenizer {
   Node getToken() {
     Node n = new Node();
     if (ptr >= ip.length) return null;
-    List operators = ['+', '-', '×', '÷', '(', ')'];
+    List operators = ['+', '–', '×', '÷', '(', ')'];
     if (operators.contains(ip[ptr])) {
       n.value = ip[ptr];
       n.type = Type.Operator;

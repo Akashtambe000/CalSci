@@ -18,7 +18,7 @@ class ScreenState extends State<Screen> {
           SizedBox(height: constraints.maxHeight * 0.3),
           Container(
             height: constraints.maxHeight * 0.25,
-            child: Text("${widget.data1.getbuffer}",
+            child: Text("${widget.data1.getbuffer.replaceAll(new RegExp(r'-'), '–')}",
                 textScaleFactor: 1.5,
                 style: TextStyle(
                   color: Colors.white,

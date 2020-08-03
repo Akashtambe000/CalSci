@@ -18,7 +18,7 @@ class IToP {
         return 2;
       case "+":
         return 1;
-      case "-":
+      case "–":
         return 1;
       default:
         return -1;
@@ -35,7 +35,7 @@ class IToP {
         return 2;
       case "+":
         return 1;
-      case "-":
+      case "–":
         return 1;
       default:
         return -1;
@@ -92,7 +92,7 @@ String evaluatePostfix(List<Node> list) {
           case '+':
             res = op1 + op2;
             break;
-          case '-':
+          case '–':
             res = op1 - op2;
             break;
           case '×':

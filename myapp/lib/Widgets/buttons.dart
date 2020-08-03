@@ -9,27 +9,26 @@ class Buttons extends StatelessWidget {
 
   final Function bufferUpdated;
 
-  static void addToBuffer(ButtonWidget b) {
-    buffer.add(b.keyValue);
-    calculate(b);
+  static void addToBuffer(String keyValue) {
+    buffer.add(keyValue);
+    calculate("_");
   }
 
-  static void clearBuffer(ButtonWidget b) {
+  static void clearBuffer(String keyValue) {
     buffer.clear();
     results.clear();
   }
 
-  static void backspace(ButtonWidget b) {
+  static void backspace(String keyValue) {
     buffer.remove();
   }
 
-  static void displayResult(ButtonWidget b) {
-    calculate(b);
+  static void displayResult(String keyValue) {
+    calculate("_");
     buffer.clear();
   }
 
-  static void calculate(ButtonWidget b) {
-    print("working");
+  static void calculate(String keyValue) {
     Tokenizer tk = Tokenizer(buffer.getbuffer);
     List<Node> infixNodeList = tk.getInfixNodeList();
     IToP itop = IToP(infixNodeList);
@@ -54,7 +53,7 @@ class Buttons extends StatelessWidget {
       {"keyValue": "4", "bgColor": Colors.white10, "func": addToBuffer},
       {"keyValue": "5", "bgColor": Colors.white10, "func": addToBuffer},
       {"keyValue": "6", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": "-", "bgColor": Colors.orange, "func": addToBuffer},
+      {"keyValue": "–", "bgColor": Colors.orange, "func": addToBuffer},
     ],
     [
       {"keyValue": "1", "bgColor": Colors.white10, "func": addToBuffer},
