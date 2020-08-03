@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import '../Methods/ScreenData.dart';
 
 class Screen extends StatefulWidget {
-  final ScreenData data;
-  Screen({Key key, @required this.data}) : super(key: key);
+  final ScreenData data1;
+  final ScreenData data2;
+  Screen({Key key, @required this.data1, @required this.data2}) : super(key: key);
   @override
   State<StatefulWidget> createState() => ScreenState();
 }
@@ -17,7 +18,7 @@ class ScreenState extends State<Screen> {
           SizedBox(height: constraints.maxHeight * 0.3),
           Container(
             height: constraints.maxHeight * 0.25,
-            child: Text("${widget.data.getbuffer}",
+            child: Text("${widget.data1.getbuffer.replaceAll(new RegExp(r'-'), '–')}",
                 textScaleFactor: 1.5,
                 style: TextStyle(
                   color: Colors.white,
@@ -26,7 +27,7 @@ class ScreenState extends State<Screen> {
           ),
           Container(
             height: constraints.maxHeight * 0.25,
-            child: Text("${widget.data.getbuffer}",
+            child: Text("${widget.data2.getbuffer}",
                 textScaleFactor: 2,
                 style: TextStyle(
                   color: Colors.white,

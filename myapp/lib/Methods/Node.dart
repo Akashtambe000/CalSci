@@ -15,17 +15,11 @@ class Tokenizer {
   Tokenizer(this.ip) {
     ptr = 0;
   }
-  // bool isNumeric(String s) {
-  //   if (s == null) {
-  //     return false;
-  //   }
-  //   return double.tryParse(s) != null;
-  // }
 
   Node getToken() {
     Node n = new Node();
     if (ptr >= ip.length) return null;
-    List operators = ['+', '-', '×', '÷', '(', ')'];
+    List operators = ['+', '–', '×', '÷', '(', ')'];
     if (operators.contains(ip[ptr])) {
       n.value = ip[ptr];
       n.type = Type.Operator;

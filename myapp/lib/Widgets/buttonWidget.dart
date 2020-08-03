@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Methods/ScreenData.dart';
 
 class ButtonWidget extends StatelessWidget {
   final Color bgColor;
@@ -17,7 +18,11 @@ class ButtonWidget extends StatelessWidget {
     return LayoutBuilder(builder: (ctx, constraints) {
       return RaisedButton(
           onPressed: () {
-            keyFunction(this);
+            List operators = ['+', '–', '×', '÷', '('];
+            if (this.keyValue == "–" && operators.contains(buffer.buffer[buffer.buffer.length - 1]))
+              keyFunction("-");
+            else
+              keyFunction(this.keyValue);  
             bufferUpdated();
           },
           shape: CircleBorder(),

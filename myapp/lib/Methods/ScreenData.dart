@@ -1,4 +1,5 @@
 ScreenData buffer = new ScreenData();
+ScreenData results = new ScreenData();
 
 class ScreenData {
   ScreenData() {
