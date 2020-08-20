@@ -9,21 +9,25 @@ class Buttons extends StatelessWidget {
 
   final Function bufferUpdated;
 
-  static void addToBuffer(String keyValue) {
+  static void addToBuffer(String keyValue, Type type) {
+    exprTree.add(Node(value: keyValue, type: type));
     buffer.add(keyValue);
     calculate("_");
   }
 
-  static void clearBuffer(String keyValue) {
+  static void clearBuffer(String keyValue, Type type) {
+    exprTree.root = null;
     buffer.clear();
     results.clear();
   }
 
-  static void backspace(String keyValue) {
+  static void backspace(String keyValue, Type type) {
+    exprTree.backspace();
     buffer.remove();
   }
 
-  static void displayResult(String keyValue) {
+  static void displayResult(String keyValue, Type type) {
+    exprTree.root = null;
     calculate("_");
     buffer.clear();
   }
@@ -38,34 +42,134 @@ class Buttons extends StatelessWidget {
 
   final buttonlist = [
     [
-      {"keyValue": "<", "bgColor": Colors.grey, "func": backspace},
-      {"keyValue": "(", "bgColor": Colors.grey, "func": addToBuffer},
-      {"keyValue": ")", "bgColor": Colors.grey, "func": addToBuffer},
-      {"keyValue": "÷", "bgColor": Colors.orange, "func": addToBuffer},
+      {
+        "keyValue": "<",
+        "type": Type.Operator,
+        "bgColor": Colors.grey,
+        "func": backspace
+      },
+      {
+        "keyValue": "(",
+        "type": Type.Operator,
+        "bgColor": Colors.grey,
+        "func": addToBuffer
+      },
+      {
+        "keyValue": ")",
+        "type": Type.Operator,
+        "bgColor": Colors.grey,
+        "func": addToBuffer
+      },
+      {
+        "keyValue": "÷",
+        "type": Type.Operator,
+        "bgColor": Colors.orange,
+        "func": addToBuffer
+      },
     ],
     [
-      {"keyValue": "7", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": "8", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": "9", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": "×", "bgColor": Colors.orange, "func": addToBuffer},
+      {
+        "keyValue": "7",
+        "type": Type.Number,
+        "bgColor": Colors.white10,
+        "func": addToBuffer
+      },
+      {
+        "keyValue": "8",
+        "type": Type.Number,
+        "bgColor": Colors.white10,
+        "func": addToBuffer
+      },
+      {
+        "keyValue": "9",
+        "type": Type.Number,
+        "bgColor": Colors.white10,
+        "func": addToBuffer
+      },
+      {
+        "keyValue": "×",
+        "type": Type.Operator,
+        "bgColor": Colors.orange,
+        "func": addToBuffer
+      },
     ],
     [
-      {"keyValue": "4", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": "5", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": "6", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": "–", "bgColor": Colors.orange, "func": addToBuffer},
+      {
+        "keyValue": "4",
+        "type": Type.Number,
+        "bgColor": Colors.white10,
+        "func": addToBuffer
+      },
+      {
+        "keyValue": "5",
+        "type": Type.Number,
+        "bgColor": Colors.white10,
+        "func": addToBuffer
+      },
+      {
+        "keyValue": "6",
+        "type": Type.Number,
+        "bgColor": Colors.white10,
+        "func": addToBuffer
+      },
+      {
+        "keyValue": "–",
+        "type": Type.Operator,
+        "bgColor": Colors.orange,
+        "func": addToBuffer
+      },
     ],
     [
-      {"keyValue": "1", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": "2", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": "3", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": "+", "bgColor": Colors.orange, "func": addToBuffer},
+      {
+        "keyValue": "1",
+        "type": Type.Number,
+        "bgColor": Colors.white10,
+        "func": addToBuffer
+      },
+      {
+        "keyValue": "2",
+        "type": Type.Number,
+        "bgColor": Colors.white10,
+        "func": addToBuffer
+      },
+      {
+        "keyValue": "3",
+        "type": Type.Number,
+        "bgColor": Colors.white10,
+        "func": addToBuffer
+      },
+      {
+        "keyValue": "+",
+        "type": Type.Operator,
+        "bgColor": Colors.orange,
+        "func": addToBuffer
+      },
     ],
     [
-      {"keyValue": "AC", "bgColor": Colors.grey, "func": clearBuffer},
-      {"keyValue": "0", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": ".", "bgColor": Colors.white10, "func": addToBuffer},
-      {"keyValue": "=", "bgColor": Colors.grey, "func": displayResult},
+      {
+        "keyValue": "AC",
+        "type": Type.Operator,
+        "bgColor": Colors.grey,
+        "func": clearBuffer
+      },
+      {
+        "keyValue": "0",
+        "type": Type.Number,
+        "bgColor": Colors.white10,
+        "func": addToBuffer
+      },
+      {
+        "keyValue": ".",
+        "type": Type.Number,
+        "bgColor": Colors.white10,
+        "func": addToBuffer
+      },
+      {
+        "keyValue": "=",
+        "type": Type.Operator,
+        "bgColor": Colors.grey,
+        "func": displayResult
+      },
     ],
   ];
 
@@ -84,6 +188,7 @@ class Buttons extends StatelessWidget {
               child: ButtonWidget(
                   bgColor: singleButton["bgColor"],
                   keyValue: singleButton["keyValue"],
+                  type: singleButton["type"],
                   keyFunction: singleButton["func"],
                   bufferUpdated: bufferUpdated),
             );

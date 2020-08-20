@@ -2,11 +2,10 @@ ScreenData buffer = new ScreenData();
 ScreenData results = new ScreenData();
 
 class ScreenData {
-  ScreenData() {
-    buffer = "";
-  }
-
   String buffer;
+
+  ScreenData({this.buffer = ""});
+
   void add(String value) {
     buffer += value;
   }
